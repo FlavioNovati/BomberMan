@@ -16,9 +16,4 @@ public class PlayerInput : EntityInput
 
         return InputDirection;
     }
-
-    public override bool GetSpecial()
-    {
-        return Input.GetKeyDown(KeyCode.Space);
-    }
 }

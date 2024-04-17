@@ -8,9 +8,4 @@ public class EnemyInput : EntityInput
     {
         return Vector2.zero;
     }
-
-    public override bool GetSpecial()
-    {
-        return false;
-    }
 }
