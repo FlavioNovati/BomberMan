@@ -2,8 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb
+public class Bomb: MonoBehaviour
 {
     public delegate void BombExploded();
-    public BombExploded OnBombExploded;
+    public BombExploded OnBombExploded = () => { };
+
+    [SerializeField] private BombScriptable m_BombSettings;
+    [SerializeField] private SpriteRenderer m_SpriteRenderer;
+    [SerializeField] private ParticleSystem m_TriggerParticleSystem;
+    
+    private void Start()
+    {
+        StartCoroutine(ExplosionEnum());
+    }
+
+    private IEnumerator ExplosionEnum()
+    {
+        float startTime = Time.time;
+        float finalTime = startTime + m_BombSettings.ExplosionDelay;
+        float frequency = 1.0f;
+
+        float enlapsedTime = 0f;
+
+        //Expand and Shrink
+        while (Time.time < finalTime)
+        {
+            //requency value
+            frequency = Mathf.Lerp(0f, m_BombSettings.EndFrequency, enlapsedTime);
+
+            //Shrink/Exand value
+            float sinValue = Mathf.Sin(Time.time * frequency)+1f;
+            sinValue = sinValue/2;
+            m_SpriteRenderer.transform.localScale = (sinValue * m_BombSettings.ScaleDifference * Vector2.one) + Vector2.one;
+            
+            enlapsedTime = (Time.time - startTime)/finalTime;
+            yield return null;
+        }
+
+        //Graphics Explosion
+        m_SpriteRenderer.transform.localScale = Vector2.one;
+        m_SpriteRenderer.sprite = m_BombSettings.ExplodedSprite;
+        m_TriggerParticleSystem.Stop();
+        //Send Event
+        OnBombExploded();
+        //Destroy After
+        yield return new WaitForSeconds(m_BombSettings.LifeTime);
+        Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        OnBombExploded -= OnBombExploded;
+    }
 }

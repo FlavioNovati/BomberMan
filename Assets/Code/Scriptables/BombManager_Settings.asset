@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99781e8b4f39d146be08700815842a6, type: 3}
-  m_Name: PlayerSettings
+  m_Script: {fileID: 11500000, guid: ee26ccca8ffcbf848be24837fadbd2a3, type: 3}
+  m_Name: BombManager_Settings
   m_EditorClassIdentifier: 
-  MovementSpeed: 1
-  IsPlayer: 1
-  DelayBetweenInput: 0.5
+  BombSettings: {fileID: 5877320467440230642, guid: 68d8505262d4cf94db35624b088dd2c6, type: 3}

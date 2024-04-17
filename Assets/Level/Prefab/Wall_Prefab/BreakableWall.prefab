@@ -126,8 +126,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4361555418603578695}
   - component: {fileID: 2412328322796033061}
+  - component: {fileID: -4038300348360342211}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: BreakableWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,3 +195,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-4038300348360342211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7583633579589967019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778df3c60c8bb104a9266335ef3c2767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WallSettings: {fileID: 0}
+  m_SpriteRenderer: {fileID: 8877227296413245781}

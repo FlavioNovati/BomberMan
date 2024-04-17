@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
     [SerializeField] EntityScriptable EntitySettings;
 
@@ -10,8 +10,12 @@ public class Entity : MonoBehaviour
     private EntityInput m_Input;
 
     private float m_LastCall = 0; 
+    private Vector2 m_Direction;
 
-    private Vector2 direction;
+    public void TakeDamage()
+    {
+        Destroy(this.gameObject);
+    }
 
     private void Awake()
     {
@@ -23,23 +27,14 @@ public class Entity : MonoBehaviour
 
     private void FixedUpdate()
     {
-        direction = Vector2.zero;
+        m_Direction = Vector2.zero;
         
         if (EntitySettings.DelayBetweenInput + m_LastCall < Time.time)
         {
             m_LastCall = Time.time;
-            direction = m_Input.GetInput();
+            m_Direction = m_Input.GetInput();
         }
 
-        m_Movement.UpdatePos(direction);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (m_RigidBody2D == null)
-            return;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(m_RigidBody2D.position + direction, 0.25f);
+        m_Movement.UpdatePos(m_Direction);
     }
 }
