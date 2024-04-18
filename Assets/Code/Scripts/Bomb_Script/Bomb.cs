@@ -14,6 +14,11 @@ public class Bomb: MonoBehaviour
     private void Start()
     {
         StartCoroutine(ExplosionEnum());
+        Vector2 spawnPos = transform.position;
+        spawnPos.x = Mathf.Floor(spawnPos.x);
+        spawnPos.y = Mathf.Floor(spawnPos.y);
+        spawnPos += Vector2.one * 0.5f;
+        transform.position = spawnPos;
     }
 
     private IEnumerator ExplosionEnum()

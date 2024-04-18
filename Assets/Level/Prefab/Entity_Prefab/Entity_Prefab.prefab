@@ -4995,6 +4995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntitySettings: {fileID: 0}
+  m_SpriteRenderer: {fileID: 8786371570736459382}
 --- !u!50 &6094523348220690208
 Rigidbody2D:
   serializedVersion: 4

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: EntitySettings
       value: 
       objectReference: {fileID: 11400000, guid: 459cc045f570d954f95e4e482ad6b655, type: 2}
+    - target: {fileID: 1578373133276738322, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
+      propertyPath: m_ParticleHolder
+      value: 
+      objectReference: {fileID: 6407157087694209131}
     - target: {fileID: 6094523348220690208, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
       propertyPath: m_GravityScale
       value: 0
@@ -19,6 +23,14 @@ PrefabInstance:
     - target: {fileID: 8442785853725333683, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
       propertyPath: m_Name
       value: Player_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786371570736459382, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786371570736459382, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8786371570736459382, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
       propertyPath: m_Sprite
@@ -76,6 +88,11 @@ PrefabInstance:
       insertIndex: 2
       addedObject: {fileID: 55907636124646334}
   m_SourcePrefab: {fileID: 100100000, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
+--- !u!4 &6407157087694209131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6692112596683154696, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
+  m_PrefabInstance: {fileID: 303398826018121059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8151285113144573392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8442785853725333683, guid: 1ef48841803840744a4120f62f6908a9, type: 3}
@@ -93,4 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d792ad84da60e40b3b6179944d52ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Settings: {fileID: 0}
+  Settings: {fileID: 11400000, guid: 372f142d69a6e7a4f8b88a8e21bfeb43, type: 2}

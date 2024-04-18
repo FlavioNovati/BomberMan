@@ -33,8 +33,8 @@ public class Entity : MonoBehaviour, IDamageable
         {
             m_LastCall = Time.time;
             m_Direction = m_Input.GetInput();
+            if (m_Movement.CanMove(m_Direction))
+                StartCoroutine(m_Movement.Move());
         }
-
-        m_Movement.UpdatePos(m_Direction);
     }
 }
