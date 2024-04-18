@@ -3,6 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class Entity : MonoBehaviour, IDamageable
 {
+    public delegate void EntityDead();
+    public static EntityDead OnEnemyDead = () => { };
+    public static EntityDead OnPlayerDead = () => { };
+
     [SerializeField] EntityScriptable EntitySettings;
 
     private Rigidbody2D m_RigidBody2D;
@@ -14,27 +18,37 @@ public class Entity : MonoBehaviour, IDamageable
 
     public void TakeDamage()
     {
+        if (EntitySettings.IsPlayer)
+            OnPlayerDead();
+        else
+            OnEnemyDead();
+
         Destroy(this.gameObject);
     }
 
     private void Awake()
     {
         m_RigidBody2D = GetComponent<Rigidbody2D>();
-        m_Movement = new Movement(EntitySettings.MovementSpeed, m_RigidBody2D);
+        m_Movement = new Movement(EntitySettings.DirectionDelay, m_RigidBody2D);
         
         m_Input = EntitySettings.GetEntityInput();
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
-        m_Direction = Vector2.zero;
-        
-        if (EntitySettings.DelayBetweenInput + m_LastCall < Time.time)
-        {
-            m_LastCall = Time.time;
-            m_Direction = m_Input.GetInput();
-            if (m_Movement.CanMove(m_Direction))
-                StartCoroutine(m_Movement.Move());
-        }
+        m_Direction = m_Input.GetInput();
+
+        if(m_Direction != Vector2.zero)
+            if (EntitySettings.DirectionDelay + m_LastCall < Time.time)
+            {
+                m_LastCall = Time.time;
+                if (m_Movement.CanMove(m_Direction))
+                    StartCoroutine(m_Movement.Move());
+            }
     }
 }

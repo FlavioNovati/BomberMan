@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99781e8b4f39d146be08700815842a6, type: 3}
-  m_Name: Player_Settings
+  m_Name: Enemy_Settings
   m_EditorClassIdentifier: 
-  IsPlayer: 1
-  DirectionDelay: 0.25
+  IsPlayer: 0
+  DirectionDelay: 0.5

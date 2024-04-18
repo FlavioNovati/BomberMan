@@ -4,26 +4,21 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Movement
 {
-    private float m_AnimationSpeed;
+    private float m_AnimationTime;
     private Rigidbody2D m_Rigidbody2D;
 
     private Vector2 m_Direction;
 
     public Movement(float animationSpeed, Rigidbody2D body)
     {
-        m_AnimationSpeed = animationSpeed;
+        m_AnimationTime = 1/animationSpeed;
         m_Rigidbody2D = body;
     }
     
     public bool CanMove(Vector2 direction)
     {
         m_Direction = direction;
-        if (!Physics2D.OverlapCircle(m_Rigidbody2D.position + m_Direction, 0.25f))
-        {
-            //m_Rigidbody2D.position += direction;
-            return true;
-        }
-        return false;
+        return !Physics2D.OverlapCircle(m_Rigidbody2D.position + m_Direction, 0.25f);
     }
 
     public IEnumerator Move()
@@ -38,7 +33,7 @@ public class Movement
         while(progress < 1f)
         {
             m_Rigidbody2D.position = Vector2.Lerp(startPos, endPos, progress);
-            progress += Time.deltaTime*m_AnimationSpeed;
+            progress += Time.deltaTime*m_AnimationTime;
             yield return null;
         }
     }

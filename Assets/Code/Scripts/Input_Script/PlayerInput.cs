@@ -11,7 +11,7 @@ public class PlayerInput : EntityInput
             return InputDirection;
 
         InputDirection.y = Input.GetAxisRaw("Vertical");
-        if( InputDirection.y != 0)
+        if(InputDirection.y != 0)
             return InputDirection;
 
         return InputDirection;

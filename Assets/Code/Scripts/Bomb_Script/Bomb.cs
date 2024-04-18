@@ -10,7 +10,14 @@ public class Bomb: MonoBehaviour
     [SerializeField] private BombScriptable m_BombSettings;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private ParticleSystem m_TriggerParticleSystem;
-    
+
+    private BoxCollider2D m_BoxCollider2D;
+
+    private void Awake()
+    {
+        m_BoxCollider2D = GetComponent<BoxCollider2D>();
+    }
+
     private void Start()
     {
         StartCoroutine(ExplosionEnum());
@@ -52,6 +59,8 @@ public class Bomb: MonoBehaviour
         CheckForExplosions();
         //Send Event
         OnBombExploded();
+        //Disable Collider
+        m_BoxCollider2D.enabled = false;
         //Destroy After
         yield return new WaitForSeconds(m_BombSettings.LifeTime);
         Destroy(this.gameObject);
@@ -74,7 +83,7 @@ public class Bomb: MonoBehaviour
         for (currentDistance = 1; currentDistance < m_BombSettings.ExplosionDistance; currentDistance++)
         {
             Debug.DrawLine(pos, pos + (direction * currentDistance), Color.magenta, 5f);
-            raycastHit = Physics2D.Raycast(transform.position, direction, currentDistance);
+            raycastHit = Physics2D.Raycast(transform.position, direction, currentDistance, ~ (1<<7));
             //check
             if (raycastHit.collider != null)
             {

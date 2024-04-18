@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1928989077619375554}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: -- SPRITE --
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3057314410355758072}
   - component: {fileID: 4369483647751684124}
   - component: {fileID: 5435049204217816445}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TriggerParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4873,7 +4873,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2752344033279042240}
   - component: {fileID: 5877320467440230642}
-  m_Layer: 0
+  - component: {fileID: 444220715592534606}
+  m_Layer: 7
   m_Name: Bomb_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4910,8 +4911,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BombSettings: {fileID: 11400000, guid: a3834b015b3d71a48bdb75da695b2e2f, type: 2}
   m_SpriteRenderer: {fileID: 6259495341479534019}
-  m_ExplodedSprite: {fileID: 315925527, guid: d51a509984b799345abefa7249ba5cd4, type: 3}
   m_TriggerParticleSystem: {fileID: 4369483647751684124}
+--- !u!61 &444220715592534606
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549075039402818451}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6907035545950472452
 GameObject:
   m_ObjectHideFlags: 0
@@ -4922,7 +4967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4126364001407336176}
   - component: {fileID: 6259495341479534019}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
