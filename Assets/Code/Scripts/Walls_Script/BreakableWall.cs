@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BreakableWall : MonoBehaviour, IDamageable
 {
-
     [SerializeField] private BreakableWallScriptable m_WallSettings;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
 
@@ -17,6 +16,7 @@ public class BreakableWall : MonoBehaviour, IDamageable
 
     public void TakeDamage()
     {
-        
+        m_SpriteRenderer.sprite = m_WallSettings.BrokenSprite;
+        m_BoxCollider.enabled = false;
     }
 }

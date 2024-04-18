@@ -207,5 +207,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778df3c60c8bb104a9266335ef3c2767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WallSettings: {fileID: 0}
+  m_WallSettings: {fileID: 11400000, guid: 98f8288c7ab07b640ba0244f9fa09f55, type: 2}
   m_SpriteRenderer: {fileID: 8877227296413245781}

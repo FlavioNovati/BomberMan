@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Bomb Manager", menuName = "Settings/Bomb/Bomb Setting")]
+[CreateAssetMenu(fileName = "New Bomb", menuName = "Settings/Bomb/Bomb Setting")]
 public class BombScriptable : ScriptableObject
 {
     [SerializeField] public int ExplosionDistance = 2;
