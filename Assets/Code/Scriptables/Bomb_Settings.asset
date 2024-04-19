@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61faa2717a9a0d4980d65f2bd1ae05c, type: 3}
   m_Name: Bomb_Settings
   m_EditorClassIdentifier: 
-  ExplosionDistance: 2
+  ExplosionDistance: 3
   ExplosionDelay: 5
   EndFrequency: 5
   ScaleDifference: 0.25

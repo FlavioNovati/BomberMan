@@ -7,6 +7,9 @@ public class Entity : MonoBehaviour, IDamageable
     public static EntityDead OnEnemyDead = () => { };
     public static EntityDead OnPlayerDead = () => { };
 
+    public delegate void EntityReady();
+    public static event EntityReady OnEnemyReady = () => { };
+
     [SerializeField] EntityScriptable EntitySettings;
 
     private Rigidbody2D m_RigidBody2D;
@@ -23,7 +26,7 @@ public class Entity : MonoBehaviour, IDamageable
         else
             OnEnemyDead();
 
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     private void Awake()
@@ -36,7 +39,8 @@ public class Entity : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        
+        if(!EntitySettings.IsPlayer)
+            OnEnemyReady();
     }
 
     private void FixedUpdate()
@@ -50,5 +54,20 @@ public class Entity : MonoBehaviour, IDamageable
                 if (m_Movement.CanMove(m_Direction))
                     StartCoroutine(m_Movement.Move());
             }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector2 startPos = transform.position;
+        startPos.x = Mathf.Floor(startPos.x);
+        startPos.y = Mathf.Floor(startPos.y);
+        startPos += Vector2.one * 0.5f;
+        transform.position = startPos;
+    }
+
+    private void OnDestroy()
+    {
+        OnEnemyDead -= OnEnemyDead;
+        OnPlayerDead -= OnPlayerDead;
     }
 }

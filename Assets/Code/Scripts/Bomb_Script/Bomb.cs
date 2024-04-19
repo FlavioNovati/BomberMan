@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Bomb: MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class Bomb: MonoBehaviour
         float startTime = Time.time;
         float finalTime = startTime + m_BombSettings.ExplosionDelay;
         float frequency = 1.0f;
-
         float enlapsedTime = 0f;
 
         //Expand and Shrink
@@ -50,17 +50,22 @@ public class Bomb: MonoBehaviour
             enlapsedTime = (Time.time - startTime)/finalTime;
             yield return null;
         }
-
+        
         //Graphics Explosion
         m_SpriteRenderer.transform.localScale = Vector2.one;
         m_SpriteRenderer.sprite = m_BombSettings.ExplodedSprite;
         m_TriggerParticleSystem.gameObject.SetActive(false);
+        PlaceExplosionParticle(transform.position);
+
         //Check for explosion
         CheckForExplosions();
+
         //Send Event
         OnBombExploded();
+
         //Disable Collider
         m_BoxCollider2D.enabled = false;
+
         //Destroy After
         yield return new WaitForSeconds(m_BombSettings.LifeTime);
         Destroy(this.gameObject);
@@ -82,18 +87,25 @@ public class Bomb: MonoBehaviour
         
         for (currentDistance = 1; currentDistance < m_BombSettings.ExplosionDistance; currentDistance++)
         {
+            //Place Particle
+            PlaceExplosionParticle(pos + (direction * currentDistance));
+            //Raycast
             Debug.DrawLine(pos, pos + (direction * currentDistance), Color.magenta, 5f);
             raycastHit = Physics2D.Raycast(transform.position, direction, currentDistance, ~ (1<<7));
-            //check
+            //Check
             if (raycastHit.collider != null)
             {
+                //Apply damage
                 if (raycastHit.collider.TryGetComponent<IDamageable>(out IDamageable damageable))
-                {
                     damageable.TakeDamage();
-                }
                 return;
             }
         }
+    }
+
+    private void PlaceExplosionParticle(Vector2 pos)
+    {
+        VFXManager.RequestExplosion_VFX(pos);
     }
 
     private void OnDestroy()
