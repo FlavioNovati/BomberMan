@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bomb_Settings
   m_EditorClassIdentifier: 
   ExplosionDistance: 3
-  ExplosionDelay: 3
-  EndFrequency: 15
+  ExplosionDelay: 5
+  EndFrequency: 5
   ScaleDifference: 0.25
   LifeTime: 5
   ExplodedSprite: {fileID: 315925527, guid: d51a509984b799345abefa7249ba5cd4, type: 3}
