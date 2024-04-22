@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Bomb: MonoBehaviour
 {
@@ -89,8 +88,6 @@ public class Bomb: MonoBehaviour
         {
             //Place Particle
             PlaceExplosionParticle(pos + (direction * currentDistance));
-            //Raycast
-            Debug.DrawLine(pos, pos + (direction * currentDistance), Color.magenta, 5f);
             raycastHit = Physics2D.Raycast(transform.position, direction, currentDistance, ~ (1<<7));
             //Check
             if (raycastHit.collider != null)
@@ -98,7 +95,8 @@ public class Bomb: MonoBehaviour
                 //Apply damage
                 if (raycastHit.collider.TryGetComponent<IDamageable>(out IDamageable damageable))
                     damageable.TakeDamage();
-                return;
+                else
+                    return;
             }
         }
     }
