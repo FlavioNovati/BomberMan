@@ -98,7 +98,8 @@ public class Bomb: MonoBehaviour
                 //Apply damage
                 if (raycastHit.collider.TryGetComponent<IDamageable>(out IDamageable damageable))
                     damageable.TakeDamage();
-                return;
+                else
+                    return;
             }
         }
     }
