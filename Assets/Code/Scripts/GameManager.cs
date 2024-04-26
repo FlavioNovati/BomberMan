@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void PlayerKilled()
     {
-        Time.timeScale = 0f;
         OnLose();
+        Time.timeScale = 0f;
     }
 
     private void OnEnable()
