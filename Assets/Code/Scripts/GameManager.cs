@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     {
         if(ScoreManager.Instance.EnemyLeft <= 0)
         {
-            Time.timeScale = 0f;
             OnWin();
+            Time.timeScale = 0f;
         }
     }
 
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Entity.OnEnemyDead += EnemyKilled;
+        ScoreManager.OnScoreChanged += EnemyKilled;
         Entity.OnPlayerDead += PlayerKilled;
     }
 }
